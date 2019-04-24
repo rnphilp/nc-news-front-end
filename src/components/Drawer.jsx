@@ -15,6 +15,7 @@ import {
   Home as HomeIcon
 } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core';
+import { Link as ReachLink } from '@reach/router';
 
 const drawerWidth = 240;
 
@@ -53,25 +54,30 @@ const Drawer = props => {
           </IconButton>
         </div>
         <List>
-          {['Home', 'Articles', 'Topics'].map((text, index) => {
+          {[
+            { display: 'Home', link: '' },
+            { display: 'Articles', link: 'articles' }
+            // { display: 'Topics', link: 'articles' }
+          ].map((item, index) => {
             return (
               <div>
                 <Divider />
-                <Link>
-                  <ListItem>
+                <Link component={ReachLink} to={`${item.link}`}>
+                  <ListItem button key={item.display}>
                     <ListItemIcon>
                       <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <ListItemText primary={item.display} />
                   </ListItem>
                 </Link>
               </div>
             );
           })}
+          <Divider />
           {topics.map(topic => {
             return (
-              <Link>
-                <ListItem>
+              <Link component={ReachLink} to={`topics/${topic.slug}`}>
+                <ListItem button>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
@@ -81,8 +87,8 @@ const Drawer = props => {
             );
           })}
           <Divider />
-          <Link>
-            <ListItem>
+          <Link component={ReachLink} to="/users/">
+            <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
