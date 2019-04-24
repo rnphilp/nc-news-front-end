@@ -7,7 +7,10 @@ import * as api from './api';
 
 class Article extends Component {
   state = {
-    article: {}
+    article: {
+      comment_count: 0,
+      article_id: 33
+    }
   };
   render() {
     const { article } = this.state;
@@ -19,7 +22,10 @@ class Article extends Component {
         <Typography variant="h4">{article.topic}</Typography>
         <Typography variant="body1">{article.body}</Typography>
         <Votes />
-        <Comments comment_count={+article.comment_count} />
+        <Comments
+          commentCount={+article.comment_count}
+          articleId={article.article_id}
+        />
       </div>
     );
   }
