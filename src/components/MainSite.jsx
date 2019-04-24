@@ -4,6 +4,7 @@ import AppBar from './AppBar';
 import { Router } from '@reach/router';
 import Articles from './Articles';
 import { withStyles } from '@material-ui/core';
+import Article from './Article';
 
 const styles = theme => ({
   root: {
@@ -32,6 +33,7 @@ class MainSite extends Component {
         <main className={classes.content}>
           <Router>
             <Articles path="/articles" />
+            <Article path="/articles/*" />
           </Router>
         </main>
       </div>
