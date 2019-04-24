@@ -20,7 +20,7 @@ class Article extends Component {
     const { article } = this.state;
     return (
       <div>
-        <Typography variant="h1">{article.title}</Typography>
+        <Typography variant="h2">{article.title}</Typography>
         <Typography variant="h6">{article.author}</Typography>
         <Typography variant="h6">{article.created_at}</Typography>
         <Typography variant="h4">{article.topic}</Typography>
