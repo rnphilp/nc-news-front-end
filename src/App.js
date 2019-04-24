@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     loggedIn: true,
     username: 'weegembump',
-    drawerOpen: true,
+    drawerOpen: false,
     topics: [
       {
         slug: 'coding',
