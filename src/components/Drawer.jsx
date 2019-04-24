@@ -16,6 +16,8 @@ import {
 } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core';
 import { Link as ReachLink } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlackHash } from '@fortawesome/free-brands-svg-icons';
 
 const drawerWidth = 240;
 
@@ -81,7 +83,9 @@ const Drawer = props => {
                 to={`topics/${topic.slug}`}
               >
                 <ListItem button key={topic.slug}>
-                  <ListItemIcon>#</ListItemIcon>
+                  <ListItemIcon>
+                    <FontAwesomeIcon icon={faSlackHash} />
+                  </ListItemIcon>
                   <ListItemText primary={topic.slug} />
                 </ListItem>
               </Link>
