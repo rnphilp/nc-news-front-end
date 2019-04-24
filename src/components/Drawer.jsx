@@ -73,7 +73,6 @@ const Drawer = props => {
               </div>
             );
           })}
-          <Divider />
           {topics.map(topic => {
             return (
               <Link
@@ -82,9 +81,7 @@ const Drawer = props => {
                 to={`topics/${topic.slug}`}
               >
                 <ListItem button key={topic.slug}>
-                  <ListItemIcon>
-                    <HomeIcon />
-                  </ListItemIcon>
+                  <ListItemIcon>#</ListItemIcon>
                   <ListItemText primary={topic.slug} />
                 </ListItem>
               </Link>
