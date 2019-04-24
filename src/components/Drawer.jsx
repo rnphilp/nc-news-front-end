@@ -60,7 +60,7 @@ const Drawer = props => {
             // { display: 'Topics', link: 'articles' }
           ].map((item, index) => {
             return (
-              <div>
+              <div key={item.display}>
                 <Divider />
                 <Link component={ReachLink} to={`${item.link}`}>
                   <ListItem button key={item.display}>
@@ -76,8 +76,12 @@ const Drawer = props => {
           <Divider />
           {topics.map(topic => {
             return (
-              <Link component={ReachLink} to={`topics/${topic.slug}`}>
-                <ListItem button>
+              <Link
+                key={topic.slug}
+                component={ReachLink}
+                to={`topics/${topic.slug}`}
+              >
+                <ListItem button key={topic.slug}>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
