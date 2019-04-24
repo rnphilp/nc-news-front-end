@@ -24,7 +24,7 @@ class Article extends Component {
         <Typography variant="h6">{article.author}</Typography>
         <Typography variant="h6">{article.created_at}</Typography>
         <Typography variant="h4">{article.topic}</Typography>
-        <Typography variant="p">{article.body}</Typography>
+        <Typography variant="body1">{article.body}</Typography>
         <Typography variant="h6">Votes: {article.votes}</Typography>
         <Typography variant="h6">Comments: {article.comment_count}</Typography>
       </div>
