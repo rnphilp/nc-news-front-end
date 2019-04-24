@@ -7,18 +7,23 @@ class MainSite extends Component {
     title: 'Page Title'
   };
   render() {
-    const { drawerOpen } = this.props;
+    const { drawerOpen, toggleDrawer } = this.props;
     const { title } = this.state;
     return (
       <div>
-        <AppBar drawerOpen={drawerOpen} title={title} />
+        <AppBar
+          drawerOpen={drawerOpen}
+          toggleDrawer={toggleDrawer}
+          title={title}
+        />
       </div>
     );
   }
 }
 
 MainSite.propTypes = {
-  drawerOpen: PropTypes.bool.isRequired
+  drawerOpen: PropTypes.bool.isRequired,
+  toggleDrawer: PropTypes.func.isRequired
 };
 
 export default MainSite;

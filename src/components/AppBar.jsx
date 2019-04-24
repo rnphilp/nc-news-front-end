@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 const AppBar = props => {
-  const { title, classes } = props;
+  const { title, classes, toggleDrawer } = props;
   return (
     <div>
       <MuiAppBar position="fixed" color="primary">
@@ -27,6 +27,7 @@ const AppBar = props => {
             color="inherit"
             aria-label="Open drawer"
             className={classNames(classes.menuButton)}
+            onClick={toggleDrawer}
           >
             <MuiMenuIcon />
           </MuiIconButton>
@@ -41,7 +42,8 @@ const AppBar = props => {
 };
 
 AppBar.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  toggleDrawer: PropTypes.isRequired
 };
 
 export default withStyles(styles)(AppBar);

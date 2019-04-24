@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import MainSite from './components/MainSite';
 import { Router } from '@reach/router';
 import LandingPage from './components/LandingPage';
+import Drawer from './components/Drawer';
 
 class App extends Component {
   state = {
     loggedIn: true,
     username: 'weegembump',
-    drawerOpen: false,
+    drawerOpen: true,
     topics: [
       {
         slug: 'coding',
@@ -28,13 +29,24 @@ class App extends Component {
     const { drawerOpen } = this.state;
     return (
       <div className="App">
+        <Drawer open={drawerOpen} toggleDrawer={this.toggleDrawer} />
         <Router>
           <LandingPage path="/" />
-          <MainSite path="/*" drawerOpen={drawerOpen} />
+          <MainSite
+            path="/*"
+            drawerOpen={drawerOpen}
+            toggleDrawer={this.toggleDrawer}
+          />
         </Router>
       </div>
     );
   }
+
+  toggleDrawer = () => {
+    this.setState(state => ({
+      drawerOpen: !state.drawerOpen
+    }));
+  };
 }
 
 export default App;
