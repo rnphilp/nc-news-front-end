@@ -20,6 +20,7 @@ class Article extends Component {
   };
   render() {
     const { article } = this.state;
+    const { articleId } = this.state;
     return (
       <div>
         <Typography variant="h2">{article.title}</Typography>

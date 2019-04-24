@@ -33,7 +33,7 @@ class MainSite extends Component {
         <main className={classes.content}>
           <Router>
             <Articles path="/articles" />
-            <Article path="/articles/*" />
+            <Article path="/articles/:articleId" />
           </Router>
         </main>
       </div>
