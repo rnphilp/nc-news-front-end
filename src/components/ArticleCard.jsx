@@ -15,7 +15,7 @@ const ArticleCard = props => {
     <div className={classes.root}>
       <Paper>
         <Link component={ReachLink} to={`${article.article_id}`}>
-          <Typography button variant="h5" component="h3">
+          <Typography button="true" variant="h5" component="h3">
             {article.title}
           </Typography>
         </Link>
