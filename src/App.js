@@ -3,26 +3,14 @@ import MainSite from './components/MainSite';
 import { Router } from '@reach/router';
 import LandingPage from './components/LandingPage';
 import Drawer from './components/Drawer';
+import * as api from './components/api';
 
 class App extends Component {
   state = {
     loggedIn: true,
     username: 'weegembump',
     drawerOpen: false,
-    topics: [
-      {
-        slug: 'coding',
-        description: 'Code is love, code is life'
-      },
-      {
-        slug: 'football',
-        description: 'FOOTIE!'
-      },
-      {
-        slug: 'cooking',
-        description: 'Hey good looking, what you got cooking?'
-      }
-    ]
+    topics: []
   };
 
   render() {
@@ -46,10 +34,21 @@ class App extends Component {
     );
   }
 
+  componentDidMount() {
+    this.getTopics();
+  }
+
   toggleDrawer = () => {
     this.setState(state => ({
       drawerOpen: !state.drawerOpen
     }));
+  };
+  getTopics = () => {
+    api.getTopics().then(({ topics }) => {
+      this.setState({
+        topics
+      });
+    });
   };
 }
 
