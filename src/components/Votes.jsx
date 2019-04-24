@@ -18,9 +18,9 @@ class Votes extends Component {
     const { votes } = this.state;
     return (
       <div className={classes.root}>
-        <IconButton onClick={() => this.incVote(1)}>+</IconButton>
-        <Typography variant="h5">{votes} Votes</Typography>
         <IconButton onClick={() => this.incVote(-1)}>-</IconButton>
+        <Typography variant="h5">{votes} Votes</Typography>
+        <IconButton onClick={() => this.incVote(1)}>+</IconButton>
       </div>
     );
   }
