@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, withStyles, Typography } from '@material-ui/core';
+import { Paper, withStyles, Typography, Link } from '@material-ui/core';
+import { Link as ReachLink } from '@reach/router';
 
 const styles = theme => ({
   root: {
@@ -13,9 +14,11 @@ const ArticleCard = props => {
   return (
     <div className={classes.root}>
       <Paper>
-        <Typography variant="h5" component="h3">
-          {article.title}
-        </Typography>
+        <Link component={ReachLink} to={`${article.article_id}`}>
+          <Typography button variant="h5" component="h3">
+            {article.title}
+          </Typography>
+        </Link>
         <Typography component="p">{article.author}</Typography>
         <Typography component="p">{article.topic}</Typography>
         <Typography component="p">Votes: {article.votes}</Typography>
