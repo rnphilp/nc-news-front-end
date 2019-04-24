@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
+import Votes from './Votes';
 
 class Article extends Component {
   state = {
@@ -25,7 +26,7 @@ class Article extends Component {
         <Typography variant="h6">{article.created_at}</Typography>
         <Typography variant="h4">{article.topic}</Typography>
         <Typography variant="body1">{article.body}</Typography>
-        <Typography variant="h6">Votes: {article.votes}</Typography>
+        <Votes />
         <Typography variant="h6">Comments: {article.comment_count}</Typography>
       </div>
     );
