@@ -14,7 +14,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
   Home as HomeIcon
 } from '@material-ui/icons';
-import { withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { Link as ReachLink } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlackHash } from '@fortawesome/free-brands-svg-icons';
@@ -80,7 +80,7 @@ const Drawer = props => {
               <Link
                 key={topic.slug}
                 component={ReachLink}
-                to={`topics/${topic.slug}`}
+                to={`articles/?topic=${topic.slug}`}
               >
                 <ListItem button key={topic.slug}>
                   <ListItemIcon>

@@ -33,12 +33,19 @@ class Articles extends Component {
     this.getArticles();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.articles !== this.state.articles) this.getArticles();
+  }
+
   getArticles = () => {
-    api.getArticles().then(({articles}) => {
+    const {
+      location: { search }
+    } = this.props;
+    api.getArticles(search).then(({ articles }) => {
       this.setState({
         articles
-      })
-    })
+      });
+    });
   };
 }
 
