@@ -43,7 +43,7 @@ const AppBar = props => {
 
 AppBar.propTypes = {
   title: PropTypes.string.isRequired,
-  toggleDrawer: PropTypes.isRequired
+  toggleDrawer: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(AppBar);
