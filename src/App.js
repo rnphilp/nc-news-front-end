@@ -26,10 +26,14 @@ class App extends Component {
   };
 
   render() {
-    const { drawerOpen } = this.state;
+    const { drawerOpen, topics } = this.state;
     return (
       <div className="App">
-        <Drawer open={drawerOpen} toggleDrawer={this.toggleDrawer} />
+        <Drawer
+          open={drawerOpen}
+          toggleDrawer={this.toggleDrawer}
+          topics={topics}
+        />
         <Router>
           <LandingPage path="/" />
           <MainSite
