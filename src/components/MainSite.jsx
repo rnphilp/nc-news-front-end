@@ -21,7 +21,7 @@ class MainSite extends Component {
     title: 'Page Title'
   };
   render() {
-    const { drawerOpen, toggleDrawer, classes } = this.props;
+    const { drawerOpen, toggleDrawer, classes, openLogin, logout } = this.props;
     const { title } = this.state;
     return (
       <div className={classes.root}>
@@ -29,6 +29,8 @@ class MainSite extends Component {
           drawerOpen={drawerOpen}
           toggleDrawer={toggleDrawer}
           title={title}
+          openLogin={openLogin}
+          logout={logout}
         />
         <main className={classes.content}>
           <Router>

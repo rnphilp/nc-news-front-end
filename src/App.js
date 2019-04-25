@@ -18,6 +18,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     const {
       drawerOpen,
       topics,
@@ -40,6 +41,8 @@ class App extends Component {
               path="/*"
               drawerOpen={drawerOpen}
               toggleDrawer={this.toggleDrawer}
+              openLogin={this.openLogin}
+              logout={this.logout}
             />
           </Router>
         </UserContext.Provider>
@@ -71,12 +74,6 @@ class App extends Component {
     });
   };
 
-  closeLogin = () => {
-    this.setState({
-      loginOpen: false
-    });
-  };
-
   getUser = username => event => {
     event.preventDefault();
     api
@@ -89,12 +86,30 @@ class App extends Component {
           loginOpen: false
         });
       })
-      .then(() => console.log(this.state))
       .catch(() => {
         this.setState({
           loginError: true
         });
       });
+  };
+
+  openLogin = () => {
+    this.setState({
+      loginOpen: true
+    });
+  };
+
+  closeLogin = () => {
+    this.setState({
+      loginOpen: false
+    });
+  };
+
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      user: {}
+    });
   };
 }
 
