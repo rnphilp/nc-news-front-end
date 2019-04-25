@@ -3,7 +3,7 @@ import MainSite from './components/MainSite';
 import { Router } from '@reach/router';
 import LandingPage from './components/LandingPage';
 import Drawer from './components/Drawer';
-import * as api from './components/api';
+import * as api from './api';
 
 class App extends Component {
   state = {

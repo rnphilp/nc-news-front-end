@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, withStyles, Typography, Link } from '@material-ui/core';
+import { Paper, Typography, Link } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import { Link as ReachLink } from '@reach/router';
 
 const styles = theme => ({

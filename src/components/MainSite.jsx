@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AppBar from './AppBar';
 import { Router } from '@reach/router';
 import Articles from './Articles';
-import { withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Article from './Article';
 
 const styles = theme => ({

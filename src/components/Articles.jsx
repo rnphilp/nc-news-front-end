@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ArticleCard from './ArticleCard';
-import * as api from './api';
+import * as api from '../api';
 import Sort from './Sort';
-
-import { withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
@@ -23,9 +22,17 @@ class Articles extends Component {
   render() {
     const { articles, sortBy, sortAsc } = this.state;
     const { classes } = this.props;
+    const sortByOptions = [
+      { display: 'date', name: 'created_at' },
+      { display: 'author', name: 'author' },
+      { display: 'title', name: 'title' },
+      { display: 'votes', name: 'votes' },
+      { display: 'comments', name: 'comment_count' }
+    ];
     return (
       <div className={classes.root}>
         <Sort
+          sortByOptions={sortByOptions}
           sortBy={sortBy}
           handleChange={this.handleChange}
           toggleSortOrder={this.toggleSortOrder}

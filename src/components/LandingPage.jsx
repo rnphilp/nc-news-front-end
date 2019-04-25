@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 const LandingPage = props => {
-  return (
-    <div>
-      Landing Page
-    </div>
-  );
+  return <div>Landing Page</div>;
 };
 
-LandingPage.propTypes = {
-  
-};
+LandingPage.propTypes = {};
 
-export default LandingPage;
+export default withStyles({})(LandingPage);
