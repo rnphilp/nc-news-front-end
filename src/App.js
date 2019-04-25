@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
+import { withStyles } from '@material-ui/core/styles';
 import MainSite from './components/MainSite';
 import LandingPage from './components/LandingPage';
 import Drawer from './components/Drawer';
@@ -7,6 +8,13 @@ import Auth from './components/Auth';
 import * as api from './api';
 
 export const UserContext = React.createContext({});
+
+const styles = () => ({
+  App: {
+    padding: 0,
+    margin: 0
+  }
+});
 class App extends Component {
   state = {
     loggedIn: false,
@@ -18,7 +26,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     const {
       drawerOpen,
       topics,
@@ -36,7 +43,13 @@ class App extends Component {
             topics={topics}
           />
           <Router>
-            <LandingPage path="/" />
+            <LandingPage
+              path="/"
+              drawerOpen={drawerOpen}
+              toggleDrawer={this.toggleDrawer}
+              openLogin={this.openLogin}
+              logout={this.logout}
+            />
             <MainSite
               path="/*"
               drawerOpen={drawerOpen}
@@ -127,4 +140,4 @@ class App extends Component {
   };
 }
 
-export default App;
+export default withStyles(styles)(App);

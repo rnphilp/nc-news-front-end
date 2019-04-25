@@ -19,6 +19,10 @@ const styles = theme => ({
   menuButton: {
     marginLeft: 0,
     marginRight: 20
+  },
+  clear: {
+    color: 'rgb(0,0,0)',
+    backgroundColor: 'rgba(0,0,0,0)'
   }
 });
 
@@ -39,11 +43,26 @@ const LogoutButton = ({ logout }) => {
 };
 
 const AppBar = props => {
-  const { title, classes, toggleDrawer, openLogin, logout } = props;
+  const {
+    title,
+    classes,
+    toggleDrawer,
+    openLogin,
+    logout,
+    color,
+    elevation
+  } = props;
   const { loggedIn } = useContext(UserContext);
+  const barColor = color || 'primary';
+  const barElevation = elevation || 2;
   return (
     <div>
-      <MuiAppBar position="fixed" color="primary">
+      <MuiAppBar
+        position="fixed"
+        color={barColor}
+        elevation={+barElevation}
+        classes={{ colorDefault: classes.clear }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -69,7 +88,9 @@ const AppBar = props => {
 };
 AppBar.propTypes = {
   title: PropTypes.string.isRequired,
-  toggleDrawer: PropTypes.func.isRequired
+  toggleDrawer: PropTypes.func.isRequired,
+  openLogin: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(AppBar);
