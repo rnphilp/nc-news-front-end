@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import Votes from './Votes';
 import Comments from './Comments';
-import * as api from './api';
+import * as api from '../api';
 
 class Article extends Component {
   state = {
@@ -45,4 +46,4 @@ class Article extends Component {
 
 Article.propTypes = {};
 
-export default Article;
+export default withStyles({})(Article);

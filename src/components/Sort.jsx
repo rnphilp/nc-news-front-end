@@ -19,7 +19,14 @@ const styles = () => ({
 });
 
 const Sort = props => {
-  const { classes, sortBy, handleChange, sortAsc, toggleSortOrder } = props;
+  const {
+    classes,
+    sortBy,
+    handleChange,
+    sortAsc,
+    toggleSortOrder,
+    sortByOptions
+  } = props;
   return (
     <div className={classes.root}>
       <FormControl>
@@ -29,13 +36,7 @@ const Sort = props => {
           onChange={handleChange('sortBy')}
           inputProps={{ id: 'sort-by' }}
         >
-          {[
-            { display: 'date', name: 'created_at' },
-            { display: 'author', name: 'author' },
-            { display: 'title', name: 'title' },
-            { display: 'votes', name: 'votes' },
-            { display: 'comments', name: 'comment_count' }
-          ].map(item => {
+          {sortByOptions.map(item => {
             return (
               <option key={item.name} value={item.name}>
                 {item.display}
@@ -55,7 +56,8 @@ Sort.propTypes = {
   sortBy: PropTypes.string.isRequired,
   sortAsc: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
-  toggleSortOrder: PropTypes.func.isRequired
+  toggleSortOrder: PropTypes.func.isRequired,
+  sortByOptions: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withStyles(styles)(Sort);
