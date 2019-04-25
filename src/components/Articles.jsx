@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ArticleCard from './ArticleCard';
 import * as api from './api';
+import Sort from './Sort';
 
 import { withStyles } from '@material-ui/core';
 
@@ -15,13 +16,15 @@ const styles = theme => ({
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    sortBy: 'date'
   };
   render() {
-    const { articles } = this.state;
+    const { articles, sortBy } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Sort sortBy={sortBy} handleChange={this.handleChange} />
         {articles.map(article => {
           return <ArticleCard key={article.article_id} article={article} />;
         })}
@@ -34,7 +37,7 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.articles !== this.state.articles) this.getArticles();
+    if (prevState.sortBy !== this.state.sortBy) this.getArticles();
   }
 
   getArticles = () => {
@@ -46,6 +49,10 @@ class Articles extends Component {
         articles
       });
     });
+  };
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
   };
 }
 
