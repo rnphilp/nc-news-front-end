@@ -10,7 +10,7 @@ export const UserContext = React.createContext({});
 class App extends Component {
   state = {
     loggedIn: false,
-    loginOpen: true,
+    loginOpen: false,
     loginError: false,
     user: {},
     drawerOpen: false,
@@ -58,6 +58,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getTopics();
+    this.retrieveUser();
   }
 
   toggleDrawer = () => {
@@ -85,12 +86,21 @@ class App extends Component {
           loggedIn: true,
           loginOpen: false
         });
+        window.localStorage.setItem('user', JSON.stringify(user));
       })
       .catch(() => {
         this.setState({
           loginError: true
         });
       });
+  };
+
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      user: {}
+    });
+    window.localStorage.removeItem('user');
   };
 
   openLogin = () => {
@@ -105,11 +115,15 @@ class App extends Component {
     });
   };
 
-  logout = () => {
-    this.setState({
-      loggedIn: false,
-      user: {}
-    });
+  retrieveUser = () => {
+    const user = window.localStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.setState({
+        user: parsedUser,
+        loggedIn: true
+      });
+    }
   };
 }
 
