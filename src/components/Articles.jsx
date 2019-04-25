@@ -17,14 +17,20 @@ const styles = theme => ({
 class Articles extends Component {
   state = {
     articles: [],
-    sortBy: 'date'
+    sortBy: 'date',
+    sortAsc: false
   };
   render() {
-    const { articles, sortBy } = this.state;
+    const { articles, sortBy, sortAsc } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Sort sortBy={sortBy} handleChange={this.handleChange} />
+        <Sort
+          sortBy={sortBy}
+          handleChange={this.handleChange}
+          toggleSortOrder={this.toggleSortOrder}
+          sortAsc={sortAsc}
+        />
         {articles.map(article => {
           return <ArticleCard key={article.article_id} article={article} />;
         })}
@@ -38,13 +44,22 @@ class Articles extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.sortBy !== this.state.sortBy) this.getArticles();
+    if (prevState.sortAsc !== this.state.sortAsc) this.getArticles();
+    if (prevProps.location.search !== this.props.location.search)
+      this.getArticles();
   }
 
   getArticles = () => {
+    const { sortBy, sortAsc } = this.state;
     const {
       location: { search }
     } = this.props;
-    api.getArticles(search).then(({ articles }) => {
+    const queries = {
+      sort_by: sortBy,
+      order: sortAsc ? 'asc' : 'desc'
+    };
+    if (search) queries.topic = search.split('=')[1];
+    api.getArticles(queries).then(({ articles }) => {
       this.setState({
         articles
       });
@@ -53,6 +68,12 @@ class Articles extends Component {
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
+  };
+
+  toggleSortOrder = () => {
+    this.setState(state => ({
+      sortAsc: !state.sortAsc
+    }));
   };
 }
 

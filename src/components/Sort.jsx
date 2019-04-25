@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { FormControl, InputLabel, NativeSelect } from '@material-ui/core';
+import {
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  IconButton
+} from '@material-ui/core';
+import {
+  ArrowUpwardRounded as ArrowUpwardIcon,
+  ArrowDownwardRounded as ArrowDownwardIcon
+} from '@material-ui/icons';
 
 const styles = () => ({
   root: {
@@ -10,7 +19,7 @@ const styles = () => ({
 });
 
 const Sort = props => {
-  const { classes, sortBy, handleChange } = props;
+  const { classes, sortBy, handleChange, sortAsc, toggleSortOrder } = props;
   return (
     <div className={classes.root}>
       <FormControl>
@@ -34,6 +43,9 @@ const Sort = props => {
             );
           })}
         </NativeSelect>
+        <IconButton aria-label="Change sort order" onClick={toggleSortOrder}>
+          {sortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+        </IconButton>
       </FormControl>
     </div>
   );
@@ -41,9 +53,9 @@ const Sort = props => {
 
 Sort.propTypes = {
   sortBy: PropTypes.string.isRequired,
-  // sortOrder: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired
-  // updateSortOrder: PropTypes.func.isRequired
+  sortAsc: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  toggleSortOrder: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Sort);
