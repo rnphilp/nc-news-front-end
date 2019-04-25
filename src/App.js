@@ -6,6 +6,7 @@ import Drawer from './components/Drawer';
 import Auth from './components/Auth';
 import * as api from './api';
 
+export const UserContext = React.createContext({});
 class App extends Component {
   state = {
     loggedIn: false,
@@ -17,22 +18,31 @@ class App extends Component {
   };
 
   render() {
-    const { drawerOpen, topics, loginOpen, loginError } = this.state;
+    const {
+      drawerOpen,
+      topics,
+      loginOpen,
+      loggedIn,
+      loginError,
+      user
+    } = this.state;
     return (
       <div className="App">
-        <Drawer
-          open={drawerOpen}
-          toggleDrawer={this.toggleDrawer}
-          topics={topics}
-        />
-        <Router>
-          <LandingPage path="/" />
-          <MainSite
-            path="/*"
-            drawerOpen={drawerOpen}
+        <UserContext.Provider value={{ loggedIn, user }}>
+          <Drawer
+            open={drawerOpen}
             toggleDrawer={this.toggleDrawer}
+            topics={topics}
           />
-        </Router>
+          <Router>
+            <LandingPage path="/" />
+            <MainSite
+              path="/*"
+              drawerOpen={drawerOpen}
+              toggleDrawer={this.toggleDrawer}
+            />
+          </Router>
+        </UserContext.Provider>
         <Auth
           open={loginOpen}
           onClose={this.closeLogin}

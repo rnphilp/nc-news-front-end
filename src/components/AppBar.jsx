@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   AppBar as MuiAppBar,
@@ -9,6 +9,7 @@ import {
 import { Menu as MuiMenuIcon } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import { UserContext } from '../App';
 
 const styles = theme => ({
   menuButton: {
@@ -19,6 +20,8 @@ const styles = theme => ({
 
 const AppBar = props => {
   const { title, classes, toggleDrawer } = props;
+  const value = useContext(UserContext);
+  console.log(value);
   return (
     <div>
       <MuiAppBar position="fixed" color="primary">
