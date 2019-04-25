@@ -20,6 +20,7 @@ const ArticleCard = props => {
           </Typography>
         </Link>
         <Typography component="p">{article.author}</Typography>
+        <Typography component="p">{article.created_at}</Typography>
         <Typography component="p">{article.topic}</Typography>
         <Typography component="p">Votes: {article.votes}</Typography>
         <Typography component="p">Comments: {article.comment_count}</Typography>
