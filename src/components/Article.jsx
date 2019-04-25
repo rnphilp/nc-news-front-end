@@ -21,7 +21,7 @@ class Article extends Component {
         <Typography variant="h6">{article.created_at}</Typography>
         <Typography variant="h4">{article.topic}</Typography>
         <Typography variant="body1">{article.body}</Typography>
-        <Votes />
+        <Votes articleId={article.article_id} />
         <Comments
           commentCount={+article.comment_count}
           articleId={article.article_id}

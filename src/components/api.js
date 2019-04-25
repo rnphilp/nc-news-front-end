@@ -23,3 +23,10 @@ export const getComments = async articleId => {
   );
   return data.comments;
 };
+
+export const incArticleVotes = async (articleId, num) => {
+  const { data } = await axios.patch(`${BASE_URL}/articles/${articleId}`, {
+    inc_votes: num
+  });
+  return data.article;
+};
