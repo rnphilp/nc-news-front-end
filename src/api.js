@@ -33,3 +33,8 @@ export const incArticleVotes = async (articleId, num) => {
   });
   return data.article;
 };
+
+export const getUser = async username => {
+  const { data } = await axios.get(`${BASE_URL}/users/${username}`);
+  return data;
+};

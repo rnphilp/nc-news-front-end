@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import MainSite from './components/MainSite';
 import { Router } from '@reach/router';
+import MainSite from './components/MainSite';
 import LandingPage from './components/LandingPage';
 import Drawer from './components/Drawer';
+import Auth from './components/Auth';
 import * as api from './api';
 
 class App extends Component {
   state = {
-    loggedIn: true,
-    username: 'weegembump',
+    loggedIn: false,
+    loginOpen: true,
+    loginError: false,
+    user: {},
     drawerOpen: false,
     topics: []
   };
 
   render() {
-    const { drawerOpen, topics } = this.state;
+    const { drawerOpen, topics, loginOpen, loginError } = this.state;
     return (
       <div className="App">
         <Drawer
@@ -30,6 +33,12 @@ class App extends Component {
             toggleDrawer={this.toggleDrawer}
           />
         </Router>
+        <Auth
+          open={loginOpen}
+          onClose={this.closeLogin}
+          getUser={this.getUser}
+          loginError={loginError}
+        />
       </div>
     );
   }
@@ -43,12 +52,39 @@ class App extends Component {
       drawerOpen: !state.drawerOpen
     }));
   };
+
   getTopics = () => {
     api.getTopics().then(({ topics }) => {
       this.setState({
         topics
       });
     });
+  };
+
+  closeLogin = () => {
+    this.setState({
+      loginOpen: false
+    });
+  };
+
+  getUser = username => event => {
+    event.preventDefault();
+    api
+      .getUser(username)
+      .then(user => {
+        this.setState({
+          user,
+          loginError: false,
+          loggedIn: true,
+          loginOpen: false
+        });
+      })
+      .then(() => console.log(this.state))
+      .catch(() => {
+        this.setState({
+          loginError: true
+        });
+      });
   };
 }
 
