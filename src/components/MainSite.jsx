@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 class MainSite extends Component {
   state = {
-    title: 'Page Title'
+    title: 'NC News'
   };
   render() {
     const { drawerOpen, toggleDrawer, classes, openLogin, logout } = this.props;
