@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   Drawer as MuiDrawer,
@@ -18,6 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link as ReachLink } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlackHash } from '@fortawesome/free-brands-svg-icons';
+import UserContext from './context/UserContext';
 
 const styles = theme => ({
   drawer: {
@@ -46,6 +47,7 @@ const styles = theme => ({
 
 const Drawer = props => {
   const { classes, open, toggleDrawer, topics } = props;
+  const { loggedIn } = useContext(UserContext);
   return (
     <div>
       <MuiDrawer
@@ -101,8 +103,8 @@ const Drawer = props => {
               </Link>
             );
           })}
-          <Divider />
           <Link component={ReachLink} to="/users/">
+            <Divider />
             <ListItem button>
               <ListItemIcon>
                 <HomeIcon />
@@ -110,6 +112,11 @@ const Drawer = props => {
               <ListItemText primary="Account" />
             </ListItem>
           </Link>
+          {!loggedIn && (
+            <ListItem>
+              <ListItemText secondary="Log In for to vote, comment and post new articles" />
+            </ListItem>
+          )}
         </List>
       </MuiDrawer>
     </div>
