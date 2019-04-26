@@ -8,10 +8,16 @@ export const getTopics = async () => {
 };
 
 export const getArticles = async queries => {
-  const { data } = await axios.get(`${BASE_URL}/articles`, {
+  const {
+    data: { articles }
+  } = await axios.get(`${BASE_URL}/articles`, {
     params: queries
   });
-  return data;
+  return articles.map(article => {
+    const date = new Date(article.created_at);
+    article.created_at = date.toUTCString().replace(' GMT', '');
+    return article;
+  });
 };
 
 export const getArticle = async articleId => {
