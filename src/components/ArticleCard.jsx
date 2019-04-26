@@ -32,7 +32,6 @@ const ArticleCard = props => {
           onClick={() => navigate(`/articles/?topic=${article.topic}`)}
           className={classes.chip}
         />
-        <Typography component="p">{article.topic}</Typography>
         <Typography component="p">Votes: {article.votes}</Typography>
         <Typography component="p">Comments: {article.comment_count}</Typography>
       </Paper>
