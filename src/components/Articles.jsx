@@ -10,6 +10,9 @@ const styles = theme => ({
     display: 'flex',
     'flex-direction': 'column',
     justifyContent: 'flex-start'
+  },
+  articles: {
+    maxWidth: '750px'
   }
 });
 
@@ -39,9 +42,11 @@ class Articles extends Component {
           sortAsc={sortAsc}
           className={classes.Sort}
         />
-        {articles.map(article => {
-          return <ArticleCard key={article.article_id} article={article} />;
-        })}
+        <div className={classes.articles}>
+          {articles.map(article => {
+            return <ArticleCard key={article.article_id} article={article} />;
+          })}
+        </div>
       </div>
     );
   }

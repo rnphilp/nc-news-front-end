@@ -6,7 +6,7 @@ import { Link as ReachLink } from '@reach/router';
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    margin: '10px'
   }
 });
 
