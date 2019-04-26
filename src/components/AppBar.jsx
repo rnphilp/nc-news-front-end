@@ -27,6 +27,10 @@ const styles = theme => ({
   Toolbar: {
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  leftItems: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
