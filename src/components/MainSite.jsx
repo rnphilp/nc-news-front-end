@@ -11,6 +11,7 @@ const styles = theme => ({
   main: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 9,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen

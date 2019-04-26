@@ -29,9 +29,12 @@ const styles = theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: '0 8px',
+    padding: '0px 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end'
+  },
+  List: {
+    paddingTop: '0px'
   }
 });
 
@@ -53,7 +56,7 @@ const Drawer = props => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <List>
+        <List className={classes.List}>
           {[
             { display: 'Home', link: '' },
             { display: 'Articles', link: 'articles' }

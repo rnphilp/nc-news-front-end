@@ -16,6 +16,21 @@ import classNames from 'classnames';
 import { UserContext } from '../App';
 
 const styles = theme => ({
+  AppBar: {
+    color: 'secondary',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  AppBarShift: {
+    width: `calc(100% - ${theme.drawer.width}px)`,
+    marginLeft: theme.drawer.width,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
   menuButton: {
     marginLeft: 0,
     marginRight: 20
@@ -31,6 +46,9 @@ const styles = theme => ({
   leftItems: {
     display: 'flex',
     alignItems: 'center'
+  },
+  hide: {
+    display: 'none'
   }
 });
 
@@ -55,6 +73,7 @@ const AppBar = props => {
     title,
     classes,
     toggleDrawer,
+    drawerOpen,
     openLogin,
     logout,
     color,
@@ -70,13 +89,19 @@ const AppBar = props => {
         color={barColor}
         elevation={+barElevation}
         classes={{ colorDefault: classes.clear }}
+        className={classNames(classes.AppBar, {
+          [classes.AppBarShift]: drawerOpen
+        })}
       >
         <Toolbar className={classes.Toolbar}>
           <div className={classes.leftItems}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
-              className={classNames(classes.menuButton)}
+              className={classNames(
+                classes.menuButton,
+                drawerOpen && classes.hide
+              )}
               onClick={toggleDrawer}
             >
               <MenuIcon />
@@ -100,6 +125,7 @@ const AppBar = props => {
 AppBar.propTypes = {
   title: PropTypes.string.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
+  drawerOpen: PropTypes.bool.isRequired,
   openLogin: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
 };
