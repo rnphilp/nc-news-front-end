@@ -24,7 +24,7 @@ class Articles extends Component {
   };
   render() {
     const { articles, sortBy, sortAsc } = this.state;
-    const { classes } = this.props;
+    const { classes, navigate } = this.props;
     const sortByOptions = [
       { display: 'date', name: 'created_at' },
       { display: 'author', name: 'author' },
@@ -44,7 +44,13 @@ class Articles extends Component {
         />
         <div className={classes.articles}>
           {articles.map(article => {
-            return <ArticleCard key={article.article_id} article={article} />;
+            return (
+              <ArticleCard
+                key={article.article_id}
+                article={article}
+                navigate={navigate}
+              />
+            );
           })}
         </div>
       </div>

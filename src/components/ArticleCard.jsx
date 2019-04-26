@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Typography, Link } from '@material-ui/core';
+import { Paper, Typography, Link, Chip, Avatar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlackHash } from '@fortawesome/free-brands-svg-icons';
+
 import { Link as ReachLink } from '@reach/router';
 
 const styles = theme => ({
@@ -11,7 +14,8 @@ const styles = theme => ({
 });
 
 const ArticleCard = props => {
-  const { article, classes } = props;
+  const { article, classes, navigate } = props;
+  console.log(navigate);
   return (
     <div className={classes.root}>
       <Paper>
@@ -22,6 +26,12 @@ const ArticleCard = props => {
         </Link>
         <Typography component="p">{article.author}</Typography>
         <Typography component="p">{article.created_at}</Typography>
+        <Chip
+          icon={<FontAwesomeIcon icon={faSlackHash} />}
+          label={article.topic}
+          onClick={() => navigate(`/articles/?topic=${article.topic}`)}
+          className={classes.chip}
+        />
         <Typography component="p">{article.topic}</Typography>
         <Typography component="p">Votes: {article.votes}</Typography>
         <Typography component="p">Comments: {article.comment_count}</Typography>
