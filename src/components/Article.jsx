@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
+import { Typography, Chip, Avatar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Votes from './Votes';
 import Comments from './Comments';
 import * as api from '../api';
 
+const styles = theme => ({
+  Chip: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  }
+});
 class Article extends Component {
   state = {
     article: {
@@ -15,12 +21,17 @@ class Article extends Component {
   };
   render() {
     const { article } = this.state;
+    const { classes } = this.props;
+    const avatar = article.author && article.author.slice(0, 1).toUpperCase();
     return (
       <div>
         <Typography variant="h2">{article.title}</Typography>
-        <Typography variant="h6">{article.author}</Typography>
-        <Typography variant="h6">{article.created_at}</Typography>
-        <Typography variant="h4">{article.topic}</Typography>
+        <Chip
+          avatar={<Avatar>{avatar}</Avatar>}
+          label={article.author}
+          className={classes.Chip}
+        />
+        <Typography variant="body2">Posted on {article.created_at}</Typography>
         <Typography variant="body1">{article.body}</Typography>
         <Votes articleId={article.article_id} />
         <Comments
@@ -51,4 +62,4 @@ class Article extends Component {
 
 Article.propTypes = {};
 
-export default withStyles({})(Article);
+export default withStyles(styles)(Article);
