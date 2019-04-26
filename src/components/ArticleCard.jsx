@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, Typography, Link, Chip, Badge } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  HowToVoteRounded as VotesIcon,
+  ThumbsUpDownRounded as VotesIcon,
   CommentRounded as CommentIcon
 } from '@material-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
