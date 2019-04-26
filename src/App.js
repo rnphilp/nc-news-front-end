@@ -138,11 +138,11 @@ class App extends Component {
   };
 
   retrieveUser = () => {
-    const user = window.localStorage.getItem('user');
+    let user = window.localStorage.getItem('user');
     if (user) {
-      const parsedUser = JSON.parse(user);
+      user = JSON.parse(user);
       this.setState({
-        user: parsedUser,
+        user,
         loggedIn: true
       });
     }
