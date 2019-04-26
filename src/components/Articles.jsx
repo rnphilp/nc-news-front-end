@@ -9,7 +9,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     'flex-direction': 'column',
-    'justify-content': 'flex-start'
+    justifyContent: 'flex-start'
   }
 });
 
@@ -37,6 +37,7 @@ class Articles extends Component {
           handleChange={this.handleChange}
           toggleSortOrder={this.toggleSortOrder}
           sortAsc={sortAsc}
+          className={classes.Sort}
         />
         {articles.map(article => {
           return <ArticleCard key={article.article_id} article={article} />;

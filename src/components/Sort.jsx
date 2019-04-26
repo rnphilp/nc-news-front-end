@@ -14,7 +14,8 @@ import {
 
 const styles = () => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 });
 
@@ -29,7 +30,7 @@ const Sort = props => {
   } = props;
   return (
     <div className={classes.root}>
-      <FormControl>
+      <FormControl className={classes.FormControl}>
         <InputLabel htmlFor="sort-by">sort by</InputLabel>
         <NativeSelect
           value={sortBy}
@@ -44,10 +45,10 @@ const Sort = props => {
             );
           })}
         </NativeSelect>
-        <IconButton aria-label="Change sort order" onClick={toggleSortOrder}>
-          {sortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
-        </IconButton>
       </FormControl>
+      <IconButton aria-label="Change sort order" onClick={toggleSortOrder}>
+        {sortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+      </IconButton>
     </div>
   );
 };
