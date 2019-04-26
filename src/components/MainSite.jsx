@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Article from './Article';
 import classNames from 'classnames';
 import Error404 from './Error404';
+import Error from './Error';
 
 const styles = theme => ({
   main: {
@@ -54,7 +55,8 @@ class MainSite extends Component {
           <Router>
             <Articles path="/articles" />
             <Article path="/articles/:articleId" />
-            <Error404 default />
+            <Error path="/error/*" />
+            <Error404 path="/404PageNotFound" default />
           </Router>
         </main>
       </div>
