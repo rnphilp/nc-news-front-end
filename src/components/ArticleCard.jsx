@@ -15,7 +15,6 @@ const styles = theme => ({
 
 const ArticleCard = props => {
   const { article, classes, navigate } = props;
-  console.log(navigate);
   return (
     <div className={classes.root}>
       <Paper>
@@ -40,7 +39,8 @@ const ArticleCard = props => {
 };
 
 ArticleCard.propTypes = {
-  article: PropTypes.object.isRequired
+  article: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(ArticleCard);

@@ -36,7 +36,7 @@ class Article extends Component {
   }
 
   getArticle = () => {
-    api.getArticle(this.props.articleId).then(({ article }) => {
+    api.getArticle(this.props.articleId).then(article => {
       this.setState({
         article
       });

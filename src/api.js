@@ -21,8 +21,14 @@ export const getArticles = async queries => {
 };
 
 export const getArticle = async articleId => {
-  const { data } = await axios.get(`${BASE_URL}/articles/${articleId}`);
-  return data;
+  const {
+    data: { article }
+  } = await axios.get(`${BASE_URL}/articles/${articleId}`);
+  const date = new Date(article.created_at);
+  return {
+    ...article,
+    created_at: date.toUTCString().replace(' GMT', '')
+  };
 };
 
 export const getComments = async (articleId, queries) => {
