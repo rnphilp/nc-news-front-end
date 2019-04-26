@@ -27,6 +27,7 @@ const styles = () => ({
 
 const LandingPage = props => {
   const { classes, drawerOpen, toggleDrawer, openLogin, logout } = props;
+  const { navigate } = props;
   return (
     <div className={classes.root}>
       <AppBar
@@ -40,8 +41,12 @@ const LandingPage = props => {
       />
       <div className={classes.title}>
         <Typography variant="h1">NC News</Typography>
-        <Button color="primary" variant="contained">
-          browse
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => navigate('/articles')}
+        >
+          browse articles
         </Button>
       </div>
     </div>
