@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Background from '../resources/tall-buildings.jpg';
 import AppBar from './AppBar';
+import { Typography, Button } from '@material-ui/core';
 
 const styles = () => ({
   root: {
@@ -11,7 +12,16 @@ const styles = () => ({
     width: '100vw',
     height: '100vh',
     margin: 0,
-    padding: 0
+    padding: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    marginBottom: '200px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 });
 
@@ -28,6 +38,12 @@ const LandingPage = props => {
         color="default"
         elevation="0"
       />
+      <div className={classes.title}>
+        <Typography variant="h1">NC News</Typography>
+        <Button color="primary" variant="contained">
+          browse
+        </Button>
+      </div>
     </div>
   );
 };
