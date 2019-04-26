@@ -10,10 +10,10 @@ const theme = createMuiTheme({
     }
     // contrastThreshold: 3,
     // tonalOffset: 0.2
+  },
+  drawer: {
+    width: 240
   }
-  // drawer: {
-  //   width: 240
-  // }
 });
 
 export default theme;

@@ -19,14 +19,12 @@ import { Link as ReachLink } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlackHash } from '@fortawesome/free-brands-svg-icons';
 
-const drawerWidth = 240;
-
 const styles = theme => ({
   drawer: {
-    width: drawerWidth
+    width: theme.drawer.width
   },
   drawerPaper: {
-    width: drawerWidth
+    width: theme.drawer.width
   },
   drawerHeader: {
     display: 'flex',
