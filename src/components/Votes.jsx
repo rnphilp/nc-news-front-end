@@ -11,7 +11,8 @@ import UserContext from './context/UserContext';
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
