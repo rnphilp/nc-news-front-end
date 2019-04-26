@@ -23,6 +23,10 @@ const styles = theme => ({
   clear: {
     color: 'rgb(0,0,0)',
     backgroundColor: 'rgba(0,0,0,0)'
+  },
+  Toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 });
 
@@ -63,19 +67,22 @@ const AppBar = props => {
         elevation={+barElevation}
         classes={{ colorDefault: classes.clear }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            className={classNames(classes.menuButton)}
-            onClick={toggleDrawer}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="title" color="inherit" noWrap>
-            {title}
-          </Typography>
-          {/* TODO: Make searchbar dynamic for mobile */}
+        <Toolbar className={classes.Toolbar}>
+          <div className={classes.leftItems}>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              className={classNames(classes.menuButton)}
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              {title}
+            </Typography>
+            {/* TODO: Make searchbar dynamic for mobile */}
+          </div>
+          <div className={classes.rightItems} />
           {loggedIn ? (
             <LogoutButton logout={logout} />
           ) : (
