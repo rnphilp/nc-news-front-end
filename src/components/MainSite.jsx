@@ -11,6 +11,8 @@ import Error from './Error';
 
 const styles = theme => ({
   main: {
+    display: 'flex',
+    justifyContent: 'center',
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
     paddingTop: theme.spacing.unit * 9,

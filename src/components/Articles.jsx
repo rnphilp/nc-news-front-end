@@ -9,7 +9,8 @@ const styles = theme => ({
   root: {
     display: 'flex',
     'flex-direction': 'column',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    maxWidth: '1500px'
   },
   articles: {
     maxWidth: '750px'
