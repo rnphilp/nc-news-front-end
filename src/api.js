@@ -10,7 +10,7 @@ export const getTopics = async () => {
 export const getArticles = async queries => {
   const {
     data: { articles }
-  } = await axios.get(`${BASE_URL}/articles`, {
+  } = await axios.patch(`${BASE_URL}/articles`, {
     params: queries
   });
   return articles.map(article => {

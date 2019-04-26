@@ -36,11 +36,16 @@ class Article extends Component {
   }
 
   getArticle = () => {
-    api.getArticle(this.props.articleId).then(article => {
-      this.setState({
-        article
+    api
+      .getArticle(this.props.articleId)
+      .then(article => {
+        this.setState({
+          article
+        });
+      })
+      .catch(err => {
+        this.props.navigate(`/error/${err.response.status}`, { replace: true });
       });
-    });
   };
 }
 

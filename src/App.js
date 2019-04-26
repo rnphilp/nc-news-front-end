@@ -84,11 +84,16 @@ class App extends Component {
   };
 
   getTopics = () => {
-    api.getTopics().then(({ topics }) => {
-      this.setState({
-        topics
+    api
+      .getTopics()
+      .then(({ topics }) => {
+        this.setState({
+          topics
+        });
+      })
+      .catch(err => {
+        this.props.navigate(`/error/${err.response.status}`, { replace: true });
       });
-    });
   };
 
   getUser = username => event => {

@@ -63,11 +63,16 @@ class Comments extends Component {
       order: sortAsc ? 'asc' : 'desc'
     };
     console.log(queries);
-    api.getComments(this.props.articleId, queries).then(comments => {
-      this.setState({
-        comments
+    api
+      .getComments(this.props.articleId, queries)
+      .then(comments => {
+        this.setState({
+          comments
+        });
+      })
+      .catch(err => {
+        this.props.navigate(`/error/${err.response.status}`, { replace: true });
       });
-    });
   };
 
   handleChange = name => event => {

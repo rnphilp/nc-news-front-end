@@ -78,11 +78,16 @@ class Articles extends Component {
       order: sortAsc ? 'asc' : 'desc'
     };
     if (search) queries.topic = search.split('=')[1];
-    api.getArticles(queries).then(articles => {
-      this.setState({
-        articles
+    api
+      .getArticles(queries)
+      .then(articles => {
+        this.setState({
+          articles
+        });
+      })
+      .catch(err => {
+        this.props.navigate(`/error/${err.response.status}`, { replace: true });
       });
-    });
   };
 
   handleChange = name => event => {
