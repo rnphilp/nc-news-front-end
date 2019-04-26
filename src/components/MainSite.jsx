@@ -6,6 +6,7 @@ import Articles from './Articles';
 import { withStyles } from '@material-ui/core/styles';
 import Article from './Article';
 import classNames from 'classnames';
+import Error404 from './Error404';
 
 const styles = theme => ({
   main: {
@@ -53,6 +54,7 @@ class MainSite extends Component {
           <Router>
             <Articles path="/articles" />
             <Article path="/articles/:articleId" />
+            <Error404 default />
           </Router>
         </main>
       </div>

@@ -35,6 +35,12 @@ const styles = theme => ({
   },
   List: {
     paddingTop: '0px'
+  },
+  topics: {
+    marginLeft: theme.spacing.unit * 3.5
+  },
+  topicText: {
+    paddingLeft: 0
   }
 });
 
@@ -83,11 +89,14 @@ const Drawer = props => {
                 component={ReachLink}
                 to={`articles/?topic=${topic.slug}`}
               >
-                <ListItem button key={topic.slug}>
+                <ListItem button key={topic.slug} className={classes.topics}>
                   <ListItemIcon>
                     <FontAwesomeIcon icon={faSlackHash} />
                   </ListItemIcon>
-                  <ListItemText primary={topic.slug} />
+                  <ListItemText
+                    primary={topic.slug}
+                    className={classes.topicText}
+                  />
                 </ListItem>
               </Link>
             );
