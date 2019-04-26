@@ -13,7 +13,7 @@ import {
 } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { UserContext } from '../App';
+import UserContext from './context/UserContext';
 
 const styles = theme => ({
   AppBar: {

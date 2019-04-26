@@ -11,6 +11,9 @@ const theme = createMuiTheme({
     // contrastThreshold: 3,
     // tonalOffset: 0.2
   },
+  typography: {
+    useNextVariants: true
+  },
   drawer: {
     width: 240
   }

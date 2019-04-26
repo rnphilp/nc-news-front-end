@@ -7,8 +7,7 @@ import Drawer from './components/Drawer';
 import Auth from './components/Auth';
 import theme from './theme';
 import * as api from './api';
-
-export const UserContext = React.createContext({});
+import UserContext from './components/context/UserContext';
 
 const styles = () => ({
   App: {
@@ -38,7 +37,9 @@ class App extends Component {
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
-          <UserContext.Provider value={{ loggedIn, user }}>
+          <UserContext.Provider
+            value={{ loggedIn: this.state.loggedIn, user: this.state.user }}
+          >
             <Drawer
               open={drawerOpen}
               toggleDrawer={this.toggleDrawer}

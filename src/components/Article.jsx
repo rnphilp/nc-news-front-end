@@ -10,6 +10,10 @@ const styles = theme => ({
   Chip: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
+  },
+  body: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   }
 });
 class Article extends Component {
@@ -31,9 +35,13 @@ class Article extends Component {
           label={article.author}
           className={classes.Chip}
         />
-        <Typography variant="body2">Posted on {article.created_at}</Typography>
-        <Typography variant="body1">{article.body}</Typography>
-        <Votes articleId={article.article_id} />
+        <Typography variant="subtitle1">
+          Posted on {article.created_at}
+        </Typography>
+        <Typography variant="body1" className={classes.body}>
+          {article.body}
+        </Typography>
+        <Votes articleId={article.article_id} votes={article.votes} />
         <Comments
           commentCount={+article.comment_count}
           articleId={article.article_id}
