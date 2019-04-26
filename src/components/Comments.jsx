@@ -62,7 +62,6 @@ class Comments extends Component {
       sort_by: sortBy,
       order: sortAsc ? 'asc' : 'desc'
     };
-    console.log(queries);
     api
       .getComments(this.props.articleId, queries)
       .then(comments => {

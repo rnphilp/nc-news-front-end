@@ -29,7 +29,6 @@ const styles = theme => ({
 
 const ArticleCard = props => {
   const { article, classes, navigate } = props;
-  console.log(article);
   return (
     <div className={classes.root}>
       <Paper className={classes.Paper}>
