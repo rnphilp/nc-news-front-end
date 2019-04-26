@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import MainSite from './components/MainSite';
 import LandingPage from './components/LandingPage';
 import Drawer from './components/Drawer';
 import Auth from './components/Auth';
+import theme from './theme';
 import * as api from './api';
 
 export const UserContext = React.createContext({});
@@ -36,35 +37,37 @@ class App extends Component {
     } = this.state;
     return (
       <div className="App">
-        <UserContext.Provider value={{ loggedIn, user }}>
-          <Drawer
-            open={drawerOpen}
-            toggleDrawer={this.toggleDrawer}
-            topics={topics}
+        <MuiThemeProvider theme={theme}>
+          <UserContext.Provider value={{ loggedIn, user }}>
+            <Drawer
+              open={drawerOpen}
+              toggleDrawer={this.toggleDrawer}
+              topics={topics}
+            />
+            <Router>
+              <LandingPage
+                path="/"
+                drawerOpen={drawerOpen}
+                toggleDrawer={this.toggleDrawer}
+                openLogin={this.openLogin}
+                logout={this.logout}
+              />
+              <MainSite
+                path="/*"
+                drawerOpen={drawerOpen}
+                toggleDrawer={this.toggleDrawer}
+                openLogin={this.openLogin}
+                logout={this.logout}
+              />
+            </Router>
+          </UserContext.Provider>
+          <Auth
+            open={loginOpen}
+            onClose={this.closeLogin}
+            getUser={this.getUser}
+            loginError={loginError}
           />
-          <Router>
-            <LandingPage
-              path="/"
-              drawerOpen={drawerOpen}
-              toggleDrawer={this.toggleDrawer}
-              openLogin={this.openLogin}
-              logout={this.logout}
-            />
-            <MainSite
-              path="/*"
-              drawerOpen={drawerOpen}
-              toggleDrawer={this.toggleDrawer}
-              openLogin={this.openLogin}
-              logout={this.logout}
-            />
-          </Router>
-        </UserContext.Provider>
-        <Auth
-          open={loginOpen}
-          onClose={this.closeLogin}
-          getUser={this.getUser}
-          loginError={loginError}
-        />
+        </MuiThemeProvider>
       </div>
     );
   }
