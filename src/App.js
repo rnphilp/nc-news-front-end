@@ -37,9 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
-          <UserContext.Provider
-            value={{ loggedIn: this.state.loggedIn, user: this.state.user }}
-          >
+          <UserContext.Provider value={{ loggedIn, user }}>
             <Drawer
               open={drawerOpen}
               toggleDrawer={this.toggleDrawer}

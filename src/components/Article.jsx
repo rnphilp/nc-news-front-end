@@ -7,6 +7,9 @@ import Comments from './Comments';
 import * as api from '../api';
 
 const styles = theme => ({
+  root: {
+    maxWidth: '1000px'
+  },
   Chip: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
@@ -28,7 +31,7 @@ class Article extends Component {
     const { classes } = this.props;
     const avatar = article.author && article.author.slice(0, 1).toUpperCase();
     return (
-      <div>
+      <div className={classes.root}>
         <Typography variant="h2">{article.title}</Typography>
         <Chip
           avatar={<Avatar>{avatar}</Avatar>}

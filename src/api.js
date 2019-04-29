@@ -47,6 +47,8 @@ export const incArticleVotes = async (articleId, num) => {
 };
 
 export const getUser = async username => {
-  const { data } = await axios.get(`${BASE_URL}/users/${username}`);
-  return data;
+  const {
+    data: { user }
+  } = await axios.get(`${BASE_URL}/users/${username}`);
+  return user;
 };
