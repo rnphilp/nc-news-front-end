@@ -35,7 +35,7 @@ class Comments extends Component {
     sortBy: 'created_at',
     sortAsc: false,
     postCommentOpen: false,
-    multilineText: ''
+    commentBody: ''
   };
 
   static contextType = UserContext;
@@ -47,7 +47,7 @@ class Comments extends Component {
       sortBy,
       sortAsc,
       postCommentOpen,
-      multilineText
+      commentBody
     } = this.state;
 
     const loggedIn = this.context;
@@ -93,8 +93,8 @@ class Comments extends Component {
                 multiline
                 rows="4"
                 rowsMax="20"
-                value={multilineText}
-                onChange={this.handleChange('multilineText')}
+                value={commentBody}
+                onChange={this.handleChange('commentBody')}
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
@@ -158,7 +158,11 @@ class Comments extends Component {
   };
 
   postComment = () => {
-    console.log('post comment');
+    const { articleId } = this.props;
+    const { commentBody } = this.state;
+    const username = this.context.user.username;
+    const body = { username, body: commentBody };
+    api.postComment(articleId, body);
   };
 
   handleChange = name => event => {

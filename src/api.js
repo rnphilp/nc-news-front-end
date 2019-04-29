@@ -52,3 +52,11 @@ export const getUser = async username => {
   } = await axios.get(`${BASE_URL}/users/${username}`);
   return user;
 };
+
+export const postComment = async (article_id, body) => {
+  const { data } = await axios.post(
+    `${BASE_URL}/articles/${article_id}/comments`,
+    body
+  );
+  console.log(data);
+};
