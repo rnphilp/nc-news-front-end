@@ -63,7 +63,7 @@ class Comments extends Component {
       commentBody
     } = this.state;
 
-    const loggedIn = this.context;
+    const { loggedIn } = this.context;
     const username = this.context.user.username || '';
 
     const sortByOptions = [
