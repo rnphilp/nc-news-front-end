@@ -6,6 +6,7 @@ import * as api from '../api';
 import { withStyles } from '@material-ui/core/styles';
 import Sort from './Sort';
 import UserContext from './context/UserContext';
+import classNames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -27,6 +28,18 @@ const styles = theme => ({
   Paper: {
     margin: theme.spacing.unit * 2,
     padding: theme.spacing.unit
+  },
+  commentForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
+  textField: {
+    flexGrow: 1
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 });
 class Comments extends Component {
@@ -85,8 +98,8 @@ class Comments extends Component {
           />
         </div>
         {postCommentOpen && (
-          <Paper className={classes.Paper}>
-            <form onSubmit={this.postComment}>
+          <Paper className={classNames(classes.Paper, classes.commentPost)}>
+            <form onSubmit={this.postComment} className={classes.commentForm}>
               <TextField
                 id="outlined-multiline-flexible"
                 label={`${username}'s comment`}
@@ -99,14 +112,16 @@ class Comments extends Component {
                 margin="normal"
                 variant="outlined"
               />
+              <div className={classes.buttonContainer}>
+                <Button
+                  color="default"
+                  variant="contained"
+                  onClick={this.postComment}
+                >
+                  submit
+                </Button>
+              </div>
             </form>
-            <Button
-              color="default"
-              variant="contained"
-              onClick={this.postComment}
-            >
-              submit
-            </Button>
           </Paper>
         )}
         {comments.map(comment => {
