@@ -162,7 +162,16 @@ class Comments extends Component {
     const { commentBody } = this.state;
     const username = this.context.user.username;
     const body = { username, body: commentBody };
-    api.postComment(articleId, body);
+    api
+      .postComment(articleId, body)
+      .then(newComment => {
+        this.setState(state => ({
+          comments: [newComment, ...state.comments],
+          postCommentOpen: false
+        }));
+      })
+      .then(() => {})
+      .catch(err => {});
   };
 
   handleChange = name => event => {
