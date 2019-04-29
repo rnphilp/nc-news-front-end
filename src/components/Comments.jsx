@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Typography,
-  Paper,
-  Fab,
-  TextField,
-  Button,
-  IconButton
-} from '@material-ui/core';
-import {
-  AddRounded as AddIcon,
-  DeleteRounded as DeleteIcon
-} from '@material-ui/icons';
+import { Typography, Paper, Fab, TextField, Button } from '@material-ui/core';
+import { AddRounded as AddIcon } from '@material-ui/icons';
 import * as api from '../api';
 import { withStyles } from '@material-ui/core/styles';
 import Sort from './Sort';
 import UserContext from './context/UserContext';
 import classNames from 'classnames';
+import CommentCard from './CommentCard';
 
 const styles = theme => ({
   root: {
@@ -138,24 +129,12 @@ class Comments extends Component {
           </Paper>
         )}
         {comments.map(comment => {
-          const isCurrentUser = comment.author === username;
           return (
-            <Paper
+            <CommentCard
+              comment={comment}
               key={comment.comment_id}
-              className={classNames(classes.Paper, {
-                [classes.colorBackground]: isCurrentUser
-              })}
-            >
-              {isCurrentUser && (
-                <IconButton onClick={this.deleteComment(comment.comment_id)}>
-                  <DeleteIcon />
-                </IconButton>
-              )}
-              <Typography variant="body2">{comment.author}</Typography>
-              <Typography variant="body2">Votes: {comment.votes}</Typography>
-              <Typography variant="body2">{comment.created_at}</Typography>
-              <Typography variant="body1">{comment.body}</Typography>
-            </Paper>
+              deleteComment={this.deleteComment}
+            />
           );
         })}
       </div>
