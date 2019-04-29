@@ -106,7 +106,7 @@ const AppBar = props => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               {title}
             </Typography>
             {/* TODO: Make searchbar dynamic for mobile */}

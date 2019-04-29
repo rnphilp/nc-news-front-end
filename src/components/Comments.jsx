@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Paper, Fab, TextField, Button } from '@material-ui/core';
-import { AddRounded as AddIcon } from '@material-ui/icons';
+import {
+  Typography,
+  Paper,
+  Fab,
+  TextField,
+  Button,
+  IconButton
+} from '@material-ui/core';
+import {
+  AddRounded as AddIcon,
+  DeleteRounded as DeleteIcon
+} from '@material-ui/icons';
 import * as api from '../api';
 import { withStyles } from '@material-ui/core/styles';
 import Sort from './Sort';
@@ -28,6 +38,9 @@ const styles = theme => ({
   Paper: {
     margin: theme.spacing.unit * 2,
     padding: theme.spacing.unit
+  },
+  colorBackground: {
+    backgroundColor: theme.palette.primary.light
   },
   commentForm: {
     display: 'flex',
@@ -125,8 +138,19 @@ class Comments extends Component {
           </Paper>
         )}
         {comments.map(comment => {
+          const isCurrentUser = comment.author === username;
           return (
-            <Paper key={comment.comment_id} className={classes.Paper}>
+            <Paper
+              key={comment.comment_id}
+              className={classNames(classes.Paper, {
+                [classes.colorBackground]: isCurrentUser
+              })}
+            >
+              {isCurrentUser && (
+                <IconButton onClick={this.deleteComment(comment.comment_id)}>
+                  <DeleteIcon />
+                </IconButton>
+              )}
               <Typography variant="body2">{comment.author}</Typography>
               <Typography variant="body2">Votes: {comment.votes}</Typography>
               <Typography variant="body2">{comment.created_at}</Typography>
@@ -198,6 +222,17 @@ class Comments extends Component {
     this.setState(state => ({
       sortAsc: !state.sortAsc
     }));
+  };
+
+  deleteComment = commentId => event => {
+    this.setState(state => ({
+      comments: state.comments.filter(
+        comment => comment.comment_id !== commentId
+      )
+    }));
+    api.deleteComment(commentId).catch(err => {
+      this.props.navigate(`/error/${err.response.status}`);
+    });
   };
 }
 

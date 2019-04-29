@@ -15,6 +15,7 @@ export const getArticles = async queries => {
   });
   return articles.map(article => {
     const date = new Date(article.created_at);
+    //TODO: use moment.js to handle date strings....
     article.created_at = date.toUTCString().replace(' GMT', '');
     return article;
   });
@@ -59,4 +60,9 @@ export const postComment = async (article_id, body) => {
     body
   );
   return data.comment;
+};
+
+export const deleteComment = async comment_id => {
+  const { data } = await axios.delete(`${BASE_URL}/comments/${comment_id}`);
+  return data;
 };
