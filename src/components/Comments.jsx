@@ -170,8 +170,9 @@ class Comments extends Component {
           postCommentOpen: false
         }));
       })
-      .then(() => {})
-      .catch(err => {});
+      .catch(err => {
+        this.props.navigate(`/error/${err.response.status}`);
+      });
   };
 
   handleChange = name => event => {
@@ -187,7 +188,8 @@ class Comments extends Component {
 
 Comments.propTypes = {
   commentCount: PropTypes.number.isRequired,
-  articleId: PropTypes.number.isRequired
+  articleId: PropTypes.number.isRequired,
+  navigate: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Comments);

@@ -28,7 +28,7 @@ class Article extends Component {
   };
   render() {
     const { article } = this.state;
-    const { classes } = this.props;
+    const { classes, navigate } = this.props;
     const avatar = article.author && article.author.slice(0, 1).toUpperCase();
     return (
       <div className={classes.root}>
@@ -48,6 +48,7 @@ class Article extends Component {
         <Comments
           commentCount={+article.comment_count}
           articleId={article.article_id}
+          navigate={navigate}
         />
       </div>
     );
