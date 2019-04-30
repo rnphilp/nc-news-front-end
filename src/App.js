@@ -138,9 +138,9 @@ class App extends Component {
   retrieveUser = () => {
     let user = localStorage.getItem('user');
     if (user) {
-      user = JSON.parse(user);
+      const parsedUser = JSON.parse(user);
       this.setState({
-        user,
+        user: parsedUser,
         loggedIn: true
       });
     }
