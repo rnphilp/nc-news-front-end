@@ -19,9 +19,9 @@ const Error = props => {
   const {
     classes,
     location: { pathname },
-    navigate
+    errorCode
   } = props;
-  const errorCode = pathname.split('/error/')[1];
+  // const errorCode = pathname.split('/error/')[1];
   if (+errorCode === 404) {
     return <Error404 />;
   }

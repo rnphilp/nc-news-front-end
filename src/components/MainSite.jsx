@@ -57,7 +57,7 @@ class MainSite extends Component {
           <Router>
             <Articles path="/articles" />
             <Article path="/articles/:articleId" />
-            <Error path="/error/*" />
+            <Error path="/error/:errorCode" />
             <Error404 path="/404PageNotFound" default />
           </Router>
         </main>
