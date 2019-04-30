@@ -106,7 +106,7 @@ class App extends Component {
           loggedIn: true,
           loginOpen: false
         });
-        window.localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user));
       })
       .catch(() => {
         this.setState({
@@ -120,7 +120,7 @@ class App extends Component {
       loggedIn: false,
       user: {}
     });
-    window.localStorage.removeItem('user');
+    localStorage.removeItem('user');
   };
 
   openLogin = () => {
@@ -136,7 +136,7 @@ class App extends Component {
   };
 
   retrieveUser = () => {
-    let user = window.localStorage.getItem('user');
+    let user = localStorage.getItem('user');
     if (user) {
       user = JSON.parse(user);
       this.setState({
